@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div style="float: right;">
+        <div id="map" style="width:900px; height:600px;"></div>
+    </div>
+    <div style="float: left; width: 400;">
+        <form name="frm_map" id="frm_map">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td>
+                        <p  id="user-name" value=""></p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Radius</th>
+                    <td>
+                        <input type="text" name="radius" id="radius" value="0.005" placeholder="In KM">m
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="button" value="Show" id="findUser">
+                        <input type="reset" value="Reset">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+<% include index-events %>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuIvRRPkovdjjO25BPyaIGQ3qIVpWLFeA&callback=initMap" type="text/javascript" >
+        
+          
+    </script>
+</html>

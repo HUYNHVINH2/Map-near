@@ -1,0 +1,43 @@
+
+<script>
+    var userLat = Number(localStorage.getItem("userLat"));
+    var userLng = Number(localStorage.getItem("userLng")); 
+    var userName = localStorage.getItem("userNameLocation");
+    $(document).ready(function(){
+        $("#user-name").text(localStorage.getItem("userNameLocation"));
+        $("#findUser").click(function(){
+            var userRadius = $("#radius").val();
+            $.ajax({
+            type: 'post',
+            url: `/get-list-orther-users-near`,  
+            data: { userName, userRadius },
+            dataType: "json",
+            success: function (data) {
+                data.dataLocationUser.forEach( item=>{
+                    var marker2 = new google.maps.Marker({
+                    position: item,
+                    map: map,
+                    icon: '/2.gif',
+                    title: item.username
+                    });
+                }) 
+            }, error: function (err) {
+                alert(err);
+            }
+            })
+        })
+    })
+    // load map 
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: userLat, lng: userLng },
+            zoom: 18
+        });
+        var marker = new google.maps.Marker({
+            position: { lat: userLat, lng: userLng },
+            map: map,
+            icon: '/2.gif',
+            title: 'VinhRikin'
+        });}
+</script>

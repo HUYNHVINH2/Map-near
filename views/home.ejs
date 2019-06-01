@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input id = "user-name" type="text" value="">
+    <button id ="btn-xac-nhan">Xac Nhan</button>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#btn-xac-nhan").click(function(){
+            let userName = $("#user-name").val();
+            $.ajax({
+            type: 'post',
+            url: `/login`,
+            data: { userName },
+            dataType: "json",
+            success: function (data) {
+                console.log(data.data);
+                localStorage.setItem("userNameLocation", data.data.username);
+                localStorage.setItem("userLat", data.data.lat);
+                localStorage.setItem("userLng", data.data.lng);
+                window.location.href = '/get-map';
+            }, error: function (err) {
+                console.log(err)
+            }
+            })
+        })
+    })
+</script>
+</html>
